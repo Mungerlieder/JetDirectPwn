@@ -29,6 +29,8 @@ namespace JetDirectPwn
 
         public bool Pwn(string pass)
         {
+            new Thread(() => checkProcess(process)).Start();
+
             bool ret = false;
             try
             {
@@ -58,6 +60,19 @@ namespace JetDirectPwn
                 return ret;
             }
             return ret;
+        }
+
+        private void checkProcess(Process process)
+        {
+            Thread.Sleep(15000);
+            try
+            {
+                process.Kill();
+            }
+            catch
+            {
+
+            }
         }
     }
 }
